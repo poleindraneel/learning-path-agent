@@ -1,0 +1,54 @@
+title: "Building Agents with Microsoft Copilot Studio"
+target_credential: "Exam AB-620 — Designing and Building Integrated AI Agent Solutions in Copilot Studio"
+total_weeks: 2
+label: copilot-studio-learning-path
+
+phases:
+  - name: "Phase 0 — Environment setup"
+    duration_days: 0.5
+    steps:
+      - text: "Create a Power Platform **developer** environment (free, isolated from production tenant)"
+      - text: "Review Copilot Credits metering and how caps are set in the Power Platform admin center"
+
+  - name: "Phase 1 — The mental model"
+    duration_days: 0.5
+    steps:
+      - text: "Complete learning path: [Build a foundation to build AI agents and extend Microsoft 365 Copilot](https://learn.microsoft.com/training/paths/build-foundation-extend-microsoft-365-copilot/) (4 modules)"
+        substeps:
+          - text: "Especially: *Choose a custom AI agent development path* (Copilot Studio vs. Microsoft Foundry vs. M365 Agents SDK vs. Agent Framework)"
+
+  - name: "Phase 2 — Hands-on core"
+    duration_days: 3
+    note: "Skip the classic topic-heavy modules on entities, variables and Dataverse for Teams unless you hit a deterministic flow you genuinely need to author by hand."
+    steps:
+      - text: "Complete [Agent in a Day — Online Workshop](https://learn.microsoft.com/training/paths/agents-online-workshop/)"
+        substeps:
+          - text: "Declarative agent in Copilot Chat"
+          - text: "Conversational agent in Copilot Studio with knowledge sources"
+          - text: "Tools and agent flows"
+          - text: "Autonomous triggers"
+
+  - name: "Phase 3 — Orchestration, MCP and multi-agent"
+    duration_days: 3
+    steps:
+      - text: "Read: [Extend your agent with Model Context Protocol](https://learn.microsoft.com/microsoft-copilot-studio/agent-extend-action-mcp)"
+      - text: "Read: [Connect your agent to an existing MCP server](https://learn.microsoft.com/microsoft-copilot-studio/mcp-add-existing-server-to-agent)"
+      - text: "Read: [Apply generative orchestration capabilities](https://learn.microsoft.com/microsoft-copilot-studio/guidance/generative-orchestration)"
+      - text: "Read: [Configure high-quality instructions for generative orchestration](https://learn.microsoft.com/microsoft-copilot-studio/guidance/generative-mode-guidance)"
+      - text: "Read: [Design autonomous agent capabilities](https://learn.microsoft.com/microsoft-copilot-studio/guidance/autonomous-agents)"
+      - text: "Read: [Explore multi-agent orchestration patterns](https://learn.microsoft.com/microsoft-copilot-studio/guidance/multi-agent-patterns) (A2A, Foundry agents as subagents)"
+      - text: "Read: [Connect to custom knowledge sources](https://learn.microsoft.com/microsoft-copilot-studio/guidance/custom-knowledge-sources) (`OnKnowledgeRequested`)"
+      - text: "**The one exercise that matters:** wire an existing MCP server into a Copilot Studio agent with generative orchestration enabled, add an autonomous trigger, and put it into a solution that deploys from dev to test"
+
+  - name: "Phase 4 — ALM, security and governance"
+    duration_days: 2
+    steps:
+      - text: "Read: [Establish an application lifecycle management strategy](https://learn.microsoft.com/microsoft-copilot-studio/guidance/alm)"
+      - text: "Read: [Key concepts — Copilot Studio security and governance](https://learn.microsoft.com/microsoft-copilot-studio/security-and-governance)"
+
+certification:
+  name: "Certification (optional)"
+  duration_days: 0.5
+  steps:
+    - text: "Decide which credential to pursue: **AB-620** (primary target) / AB-100 / APL-6006 (checkpoint after Phase 2)"
+    - text: "Schedule and complete the chosen exam"

@@ -1,0 +1,50 @@
+name: Set learning path due dates
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  fill-due-dates:
+    if: contains(github.event.issue.labels.*.name, '__LABEL__')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Replace due-date placeholders with real dates
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+            if (!body.includes('{{due:')) return;
+
+            // Business-day offset -> calendar date, starting from today.
+            function addBusinessDays(start, days) {
+              const d = new Date(start);
+              let added = 0;
+              while (added < days) {
+                d.setDate(d.getDate() + 1);
+                const day = d.getDay();
+                if (day !== 0 && day !== 6) added++;
+              }
+              return d;
+            }
+
+            function formatDate(d) {
+              return d.toISOString().slice(0, 10);
+            }
+
+            const today = new Date();
+            const newBody = body.replace(/\{\{due:(\d+)\}\}/g, (_, offset) => {
+              const n = parseInt(offset, 10);
+              const due = n === 0 ? today : addBusinessDays(today, n);
+              return formatDate(due);
+            });
+
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: newBody,
+            });

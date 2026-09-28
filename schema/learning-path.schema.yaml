@@ -1,0 +1,41 @@
+# Canonical intermediate format for a learning path.
+#
+# Any AI assistant extracting a learning path from a source document (PDF, Word,
+# Markdown, web page, etc.) must produce a YAML file matching this shape. It is
+# the ONLY interface between "understanding the document" (a job for an LLM)
+# and "generating GitHub artifacts" (a job for scripts/generate.py, plain code,
+# no model required). Keep the two decoupled — that's what makes this agent
+# reproducible across different AI tools and models.
+#
+# Field reference:
+#
+# title:              string. Name of the learning path.
+# target_credential:  string, optional. Certification/goal this path builds toward.
+# total_weeks:         number. Total elapsed time budget used to compute due dates.
+#                      Business days considered = round(total_weeks * 5).
+# label:               string, optional. GitHub label slug applied to tracker issues.
+#                      Defaults to a kebab-case slug of `title` if omitted.
+# phases:              list, in chronological order. Each phase is:
+#   name:               string. Heading text, e.g. "Phase 0 — Environment setup".
+#   duration_days:      number. Relative effort for this phase, used only to size
+#                        its share of the total_weeks timeline (proportionally).
+#                        Use your best-guess estimate from the source document
+#                        (e.g. "half a day" -> 0.5, "two to three days" -> 2.5).
+#   note:                string, optional. Extra guidance shown in italics under
+#                        the phase's steps (e.g. "skip X unless you need Y").
+#   steps:               list of step objects (see below), in the order they
+#                        should be completed.
+#
+# A step object is:
+#   text:                string. The action item text. May contain Markdown
+#                        (links, bold, code spans) — it is inserted verbatim.
+#   substeps:            list of step objects, optional. One level of nesting
+#                        only (rendered as an indented sub-checklist).
+#
+# certification:        object, optional. A trailing optional phase, same shape
+#                        as an entry in `phases` (name/duration_days/note/steps).
+#                        duration_days here should be small (it's usually a
+#                        decision + scheduling item, not multi-day effort).
+#
+# See examples/copilot-studio-learning-path.yaml for a fully worked example
+# (the actual file used to generate the daenet Copilot Studio tracker).
