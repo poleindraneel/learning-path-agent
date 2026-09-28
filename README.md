@@ -30,6 +30,14 @@ a progress tracker for this Copilot Studio learning path PDF in my other repo"* 
 Claude Code picks up the skill automatically. No need to reference `AGENT_PROMPT.md`
 by name.
 
+### With GitHub Copilot (VS Code, Visual Studio, github.com)
+
+This repo includes `.github/copilot-instructions.md`, which Copilot Chat and
+Copilot's coding agent read automatically for any request in this repo — just ask
+in plain language, e.g. *"set up a tracker for this onboarding doc in repo X."* In
+VS Code you can also type `/learning-path-tracker` to run the bundled prompt file
+(`.github/prompts/learning-path-tracker.prompt.md`) directly.
+
 ### With another AI coding assistant (Cursor, Copilot Workspace, etc.)
 
 1. Give the assistant this folder, the path to your learning path source document,
@@ -61,6 +69,8 @@ by name.
 |---|---|
 | `AGENT_PROMPT.md` | Instructions for an AI assistant to run this end-to-end |
 | `.claude/skills/learning-path-tracker/` | Claude Code Skill wrapping `AGENT_PROMPT.md` for auto-discovery |
+| `.github/copilot-instructions.md` | Repo instructions GitHub Copilot reads automatically |
+| `.github/prompts/learning-path-tracker.prompt.md` | `/learning-path-tracker` slash command for Copilot Chat in VS Code |
 | `schema/learning-path.schema.yaml` | The canonical input format, documented |
 | `examples/copilot-studio-learning-path.yaml` | A fully worked example |
 | `templates/set-due-dates.yml.tmpl` | The GitHub Action template that auto-fills due dates |
