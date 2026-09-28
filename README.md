@@ -22,7 +22,15 @@ deterministic and identical no matter which model wrote the YAML.
 
 ## How to use this
 
-### With an AI coding assistant (Claude Code, Cursor, Copilot Workspace, etc.)
+### With Claude Code
+
+This repo includes a bundled Skill (`.claude/skills/learning-path-tracker/`). Clone
+this repo, open Claude Code inside it, and just ask in plain language, e.g. *"set up
+a progress tracker for this Copilot Studio learning path PDF in my other repo"* —
+Claude Code picks up the skill automatically. No need to reference `AGENT_PROMPT.md`
+by name.
+
+### With another AI coding assistant (Cursor, Copilot Workspace, etc.)
 
 1. Give the assistant this folder, the path to your learning path source document,
    and the path/URL of the target GitHub repo.
@@ -52,6 +60,7 @@ deterministic and identical no matter which model wrote the YAML.
 | Path | Purpose |
 |---|---|
 | `AGENT_PROMPT.md` | Instructions for an AI assistant to run this end-to-end |
+| `.claude/skills/learning-path-tracker/` | Claude Code Skill wrapping `AGENT_PROMPT.md` for auto-discovery |
 | `schema/learning-path.schema.yaml` | The canonical input format, documented |
 | `examples/copilot-studio-learning-path.yaml` | A fully worked example |
 | `templates/set-due-dates.yml.tmpl` | The GitHub Action template that auto-fills due dates |
